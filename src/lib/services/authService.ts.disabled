@@ -1,0 +1,181 @@
+// DISABLED: Legacy Firebase Authentication service - Moved to Supabase
+// This file is kept for reference but not used in production
+
+/*
+// Authentication service for Firebase Auth
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  updateProfile,
+  sendPasswordResetEmail,
+  User as FirebaseUser,
+  UserCredential,
+} from 'firebase/auth';
+import { auth } from '@/lib/firebase/config';
+import { databaseService } from './databaseService';
+import type { User } from '@/types/user';
+*/
+
+export class AuthService {
+  private currentUser: FirebaseUser | null = null;
+
+  constructor() {
+    // Listen for auth state changes
+    onAuthStateChanged(auth, (user) => {
+      this.currentUser = user;
+    });
+  }
+
+  // Get current user
+  getCurrentUser(): FirebaseUser | null {
+    return this.currentUser;
+  }
+
+  // Sign up with email and password
+  async signUp(email: string, password: string, displayName: string): Promise<UserCredential> {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      
+      // Update the user's display name
+      await updateProfile(userCredential.user, {
+        displayName: displayName,
+      });
+
+      // Create user profile in Firestore
+      await this.createUserProfile(userCredential.user, displayName);
+
+      return userCredential;
+    } catch (error) {
+      console.error('Error signing up:', error);
+      throw error;
+    }
+  }
+
+  // Sign in with email and password
+  async signIn(email: string, password: string): Promise<UserCredential> {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      
+      // Update last login time
+      await databaseService.updateUser(userCredential.user.uid, {
+        lastLoginAt: new Date(),
+      });
+
+      return userCredential;
+    } catch (error) {
+      console.error('Error signing in:', error);
+      throw error;
+    }
+  }
+
+  // Sign out
+  async signOut(): Promise<void> {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error('Error signing out:', error);
+      throw error;
+    }
+  }
+
+  // Send password reset email
+  async resetPassword(email: string): Promise<void> {
+    try {
+      await sendPasswordResetEmail(auth, email);
+    } catch (error) {
+      console.error('Error sending password reset email:', error);
+      throw error;
+    }
+  }
+
+  // Create user profile in Firestore
+  private async createUserProfile(firebaseUser: FirebaseUser, displayName: string): Promise<void> {
+    const userData: Partial<User> = {
+      name: displayName,
+      ...(firebaseUser.email && { email: firebaseUser.email }),
+      level: 1,
+      xp: 0,
+      preferences: {
+        soundEnabled: true,
+        musicEnabled: true,
+        vibrationEnabled: true,
+        difficulty: 'normal',
+        language: 'es',
+        theme: 'auto',
+      },
+      statistics: {
+        totalPlayTime: 0,
+        totalProblemsAttempted: 0,
+        totalProblemsCorrect: 0,
+        totalBattlesWon: 0,
+        totalBattlesLost: 0,
+        averageAccuracy: 0,
+        averageResponseTime: 0,
+        currentStreak: 0,
+        longestStreak: 0,
+        favoriteOperation: '',
+        weakestOperation: '',
+        dailyGoalStreak: 0,
+      },
+      achievements: [],
+    };
+
+    await databaseService.createUser(firebaseUser.uid, userData);
+
+    // Create initial player progress
+    await databaseService.updatePlayerProgress(firebaseUser.uid, {
+      userId: firebaseUser.uid,
+      level: 1,
+      experience: 0,
+      totalProblemsCompleted: 0,
+      correctAnswers: 0,
+      totalBattles: 0,
+      battlesWon: 0,
+      currentStreak: 0,
+      longestStreak: 0,
+      averageAccuracy: 0,
+      totalPlayTime: 0,
+      lastPlayedAt: new Date(),
+    });
+  }
+
+  // Get user profile from Firestore
+  async getUserProfile(userId: string): Promise<User | null> {
+    return await databaseService.getUser(userId);
+  }
+
+  // Update user profile
+  async updateUserProfile(userId: string, updates: Partial<User>): Promise<void> {
+    await databaseService.updateUser(userId, updates);
+  }
+
+  // Check if user is authenticated
+  isAuthenticated(): boolean {
+    return this.currentUser !== null;
+  }
+
+  // Get user ID
+  getUserId(): string | null {
+    return this.currentUser?.uid || null;
+  }
+
+  // Get user email
+  getUserEmail(): string | null {
+    return this.currentUser?.email || null;
+  }
+
+  // Get user display name
+  getUserDisplayName(): string | null {
+    return this.currentUser?.displayName || null;
+  }
+
+  // Listen for auth state changes
+  onAuthStateChange(callback: (user: FirebaseUser | null) => void): () => void {
+    return onAuthStateChanged(auth, callback);
+  }
+}
+
+// Singleton instance
+export const authService = new AuthService(); 

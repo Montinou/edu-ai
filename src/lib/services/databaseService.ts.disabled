@@ -1,0 +1,284 @@
+// Database service for Firebase Firestore operations
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  setDoc,
+  updateDoc,
+  deleteDoc,
+  addDoc,
+  query,
+  where,
+  orderBy,
+  limit,
+  startAfter,
+  DocumentSnapshot,
+  QueryDocumentSnapshot,
+  serverTimestamp,
+  increment,
+  arrayUnion,
+  arrayRemove,
+} from 'firebase/firestore';
+import { db } from '@/lib/firebase/config';
+import type { User, PlayerProgress, UserCard } from '@/types/user';
+import type { Card, ProblemResult } from '@/types/cards';
+import type { GameSession, BattleResult } from '@/types/game';
+
+export class DatabaseService {
+  // User Management
+  async createUser(userId: string, userData: Partial<User>): Promise<void> {
+    const userRef = doc(db, 'users', userId);
+    await setDoc(userRef, {
+      ...userData,
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp(),
+    });
+  }
+
+  async getUser(userId: string): Promise<User | null> {
+    const userRef = doc(db, 'users', userId);
+    const userSnap = await getDoc(userRef);
+    
+    if (userSnap.exists()) {
+      return { id: userSnap.id, ...userSnap.data() } as User;
+    }
+    return null;
+  }
+
+  async updateUser(userId: string, updates: Partial<User>): Promise<void> {
+    const userRef = doc(db, 'users', userId);
+    await updateDoc(userRef, {
+      ...updates,
+      updatedAt: serverTimestamp(),
+    });
+  }
+
+  // Player Progress Management
+  async getPlayerProgress(userId: string): Promise<PlayerProgress | null> {
+    const progressRef = doc(db, 'playerProgress', userId);
+    const progressSnap = await getDoc(progressRef);
+    
+    if (progressSnap.exists()) {
+      return { id: progressSnap.id, ...progressSnap.data() } as PlayerProgress;
+    }
+    return null;
+  }
+
+  async updatePlayerProgress(userId: string, updates: Partial<PlayerProgress>): Promise<void> {
+    const progressRef = doc(db, 'playerProgress', userId);
+    await updateDoc(progressRef, {
+      ...updates,
+      updatedAt: serverTimestamp(),
+    });
+  }
+
+  async incrementPlayerStats(userId: string, stats: {
+    experience?: number;
+    level?: number;
+    totalProblemsCompleted?: number;
+    correctAnswers?: number;
+    totalBattles?: number;
+    battlesWon?: number;
+  }): Promise<void> {
+    const progressRef = doc(db, 'playerProgress', userId);
+    const updates: any = { updatedAt: serverTimestamp() };
+    
+    Object.entries(stats).forEach(([key, value]) => {
+      if (value !== undefined) {
+        updates[key] = increment(value);
+      }
+    });
+    
+    await updateDoc(progressRef, updates);
+  }
+
+  // Card Management
+  async getUserCards(userId: string): Promise<UserCard[]> {
+    const cardsQuery = query(
+      collection(db, 'userCards'),
+      where('userId', '==', userId),
+      orderBy('obtainedAt', 'desc')
+    );
+    
+    const cardsSnap = await getDocs(cardsQuery);
+    return cardsSnap.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    })) as UserCard[];
+  }
+
+  async addCardToUser(userId: string, cardData: Omit<UserCard, 'id' | 'userId' | 'obtainedAt'>): Promise<string> {
+    const cardRef = await addDoc(collection(db, 'userCards'), {
+      ...cardData,
+      userId,
+      obtainedAt: serverTimestamp(),
+    });
+    return cardRef.id;
+  }
+
+  async updateUserCard(cardId: string, updates: Partial<UserCard>): Promise<void> {
+    const cardRef = doc(db, 'userCards', cardId);
+    await updateDoc(cardRef, updates);
+  }
+
+  // Game Session Management
+  async createGameSession(sessionData: Omit<GameSession, 'id' | 'createdAt'>): Promise<string> {
+    const sessionRef = await addDoc(collection(db, 'gameSessions'), {
+      ...sessionData,
+      createdAt: serverTimestamp(),
+    });
+    return sessionRef.id;
+  }
+
+  async updateGameSession(sessionId: string, updates: Partial<GameSession>): Promise<void> {
+    const sessionRef = doc(db, 'gameSessions', sessionId);
+    await updateDoc(sessionRef, {
+      ...updates,
+      updatedAt: serverTimestamp(),
+    });
+  }
+
+  async getGameSession(sessionId: string): Promise<GameSession | null> {
+    const sessionRef = doc(db, 'gameSessions', sessionId);
+    const sessionSnap = await getDoc(sessionRef);
+    
+    if (sessionSnap.exists()) {
+      return { id: sessionSnap.id, ...sessionSnap.data() } as GameSession;
+    }
+    return null;
+  }
+
+  // Battle Results
+  async saveBattleResult(battleData: Omit<BattleResult, 'id' | 'timestamp'>): Promise<string> {
+    const battleRef = await addDoc(collection(db, 'battleResults'), {
+      ...battleData,
+      timestamp: serverTimestamp(),
+    });
+    return battleRef.id;
+  }
+
+  async getUserBattleHistory(userId: string, limitCount: number = 10): Promise<BattleResult[]> {
+    const battlesQuery = query(
+      collection(db, 'battleResults'),
+      where('playerId', '==', userId),
+      orderBy('timestamp', 'desc'),
+      limit(limitCount)
+    );
+    
+    const battlesSnap = await getDocs(battlesQuery);
+    return battlesSnap.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    })) as BattleResult[];
+  }
+
+  // Problem Results Tracking
+  async saveProblemResult(problemData: Omit<ProblemResult, 'id' | 'timestamp'>): Promise<string> {
+    const problemRef = await addDoc(collection(db, 'problemResults'), {
+      ...problemData,
+      timestamp: serverTimestamp(),
+    });
+    return problemRef.id;
+  }
+
+  async getUserProblemHistory(userId: string, limitCount: number = 50): Promise<ProblemResult[]> {
+    const problemsQuery = query(
+      collection(db, 'problemResults'),
+      where('userId', '==', userId),
+      orderBy('timestamp', 'desc'),
+      limit(limitCount)
+    );
+    
+    const problemsSnap = await getDocs(problemsQuery);
+    return problemsSnap.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    })) as ProblemResult[];
+  }
+
+  // Analytics and Leaderboards
+  async getLeaderboard(limitCount: number = 10): Promise<PlayerProgress[]> {
+    const leaderboardQuery = query(
+      collection(db, 'playerProgress'),
+      orderBy('experience', 'desc'),
+      limit(limitCount)
+    );
+    
+    const leaderboardSnap = await getDocs(leaderboardQuery);
+    return leaderboardSnap.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    })) as PlayerProgress[];
+  }
+
+  async getUserRank(userId: string): Promise<number> {
+    const userProgress = await this.getPlayerProgress(userId);
+    if (!userProgress) return -1;
+    
+    const higherRankedQuery = query(
+      collection(db, 'playerProgress'),
+      where('experience', '>', userProgress.experience)
+    );
+    
+    const higherRankedSnap = await getDocs(higherRankedQuery);
+    return higherRankedSnap.size + 1;
+  }
+
+  // Utility Methods
+  async batchUpdateUserProgress(userId: string, updates: {
+    experience: number;
+    problemResult: ProblemResult;
+    battleResult?: BattleResult;
+  }): Promise<void> {
+    // This would ideally use Firestore batch operations
+    // For now, we'll do sequential operations
+    
+    // Update player progress
+    await this.incrementPlayerStats(userId, {
+      experience: updates.experience,
+      totalProblemsCompleted: 1,
+      correctAnswers: updates.problemResult.isCorrect ? 1 : 0,
+    });
+    
+    // Save problem result
+    await this.saveProblemResult(updates.problemResult);
+    
+    // Save battle result if provided
+    if (updates.battleResult) {
+      await this.saveBattleResult(updates.battleResult);
+      await this.incrementPlayerStats(userId, {
+        totalBattles: 1,
+        battlesWon: updates.battleResult.winner === userId ? 1 : 0,
+      });
+    }
+  }
+
+  // Collection Management
+  async getAvailableCards(): Promise<Card[]> {
+    const cardsQuery = query(
+      collection(db, 'cards'),
+      orderBy('rarity', 'asc'),
+      orderBy('name', 'asc')
+    );
+    
+    const cardsSnap = await getDocs(cardsQuery);
+    return cardsSnap.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    })) as Card[];
+  }
+
+  async getCardById(cardId: string): Promise<Card | null> {
+    const cardRef = doc(db, 'cards', cardId);
+    const cardSnap = await getDoc(cardRef);
+    
+    if (cardSnap.exists()) {
+      return { id: cardSnap.id, ...cardSnap.data() } as Card;
+    }
+    return null;
+  }
+}
+
+// Singleton instance
+export const databaseService = new DatabaseService(); 
