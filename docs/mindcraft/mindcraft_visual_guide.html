@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindCraft AI - Guía de Identidad Visual</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #1a1a2e;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-30px, -30px) rotate(180deg); }
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(45deg, #ffffff, #f0f9ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .subtitle {
+            font-size: 1.4em;
+            font-weight: 400;
+            opacity: 0.95;
+            position: relative;
+            z-index: 2;
+        }
+
+        .content {
+            padding: 50px 40px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+            page-break-inside: avoid;
+        }
+
+        .section-title {
+            font-size: 2.4em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title .icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3em;
+        }
+
+        /* Color Palette Showcase */
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .color-card {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .color-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .color-preview {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1em;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .color-info {
+            padding: 20px;
+            background: white;
+        }
+
+        .color-name {
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            color: #1a1a2e;
+        }
+
+        .color-hex {
+            font-family: monospace;
+            font-size: 0.9em;
+            color: #64748b;
+            margin-bottom: 5px;
+        }
+
+        .color-usage {
+            font-size: 0.85em;
+            color: #64748b;
+        }
+
+        /* Primary Palette */
+        .primary-1 { background: linear-gradient(135deg, #6366f1, #4f46e5); }
+        .primary-2 { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+        .primary-3 { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+        .primary-4 { background: linear-gradient(135deg, #10b981, #059669); }
+
+        /* Secondary Palette */
+        .secondary-1 { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .secondary-2 { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .secondary-3 { background: linear-gradient(135deg, #ec4899, #db2777); }
+        .secondary-4 { background: linear-gradient(135deg, #64748b, #475569); }
+
+        /* Neutral Palette */
+        .neutral-1 { background: #f8fafc; color: #1a1a2e; }
+        .neutral-2 { background: #e2e8f0; color: #1a1a2e; }
+        .neutral-3 { background: #cbd5e1; color: #1a1a2e; }
+        .neutral-4 { background: #1a1a2e; }
+
+        /* Glassmorphism Examples */
+        .glass-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .glass-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            color: white;
+            min-height: 200px;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+            opacity: 0.8;
+            z-index: -1;
+        }
+
+        .glass-card h4 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* Typography Showcase */
+        .typography-demo {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 30px 0;
+        }
+
+        .font-display {
+            font-size: 3em;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .font-heading {
+            font-size: 2em;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 15px;
+        }
+
+        .font-body {
+            font-size: 1.1em;
+            color: #64748b;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .font-caption {
+            font-size: 0.9em;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        /* Component Examples */
+        .component-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .component-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #6366f1;
+            border: 2px solid #6366f1;
+            padding: 10px 22px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #6366f1;
+            color: white;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        /* Layout Examples */
+        .layout-preview {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 2px solid #e2e8f0;
+        }
+
+        .mockup-header {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+            height: 80px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .mockup-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .mockup-main {
+            background: white;
+            height: 200px;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+        }
+
+        .mockup-sidebar {
+            background: white;
+            height: 200px;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 20px 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .trend-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin: 5px 5px 5px 0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid #f59e0b;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; }
+            .download-btn { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .color-palette { grid-template-columns: repeat(2, 1fr); }
+            .glass-examples { grid-template-columns: 1fr; }
+            .component-showcase { grid-template-columns: 1fr; }
+            .mockup-content { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 MindCraft AI</h1>
+            <p class="subtitle">Guía de Identidad Visual & Landing Page 2025</p>
+        </div>
+
+        <div class="content">
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="icon">🎯</span>
+                    Estrategia Visual 2025
+                </h2>
+                
+                <div class="highlight-box">
+                    <p><strong>Posicionamiento Visual:</strong> MindCraft AI debe transmitir innovación tecnológica, confianza educativa y accesibilidad familiar. Nuestro diseño combina las últimas tendencias de IA/Tech (gradientes vibrantes, glassmorphism) con elementos educativos profesionales que generen confianza en padres y educadores.</p>
+                </div>
+
+                <div style="margin: 25px 0;">
+                    <span class="trend-tag">Gradientes Multi-dimensionales</span>
+                    <span class="trend-tag">Glassmorphism Sutil</span>
+                    <span class="trend-tag">Colores Vibrantes pero Profesionales</span>
+                    <span class="trend-tag">Tipografía Variable</span>
+                    <span class="trend-tag">Micro-interacciones</span>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="icon">🎨</span>
+                    Paleta de Colores Principal
+                </h2>
+                
+                <h3 style="margin: 25px 0 20px 0; color: #1a1a2e; font-size: 1.4em;">Colores Primarios - Identidad Core</h3>
+                <div class="color-palette">
+                    <div class="color-card">
+                        <div class="color-preview primary-1">Indigo Vibrante</div>
+                        <div class="color-info">
+                            <div class="color-name">Indigo Principal</div>
+                            <div class="color-hex">#6366F1</div>
+                            <div class="color-usage">Botones primarios, headers, CTAs</div>
+                        </div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-preview primary-2">Púrpura Creativo</div>
+                        <div class="color-info">
+                            <div class="color-name">Púrpura IA</div>
+                            <div class="color-hex">#8B5CF6</div>
+                            <div class="color-usage">Elementos IA, módulos creativos</div>
+                        </div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-preview primary-3">Cyan Tecnológico</div>
+                        <div class="color-info">
+                            <div class="color-name">Cyan Tech</div>
+                            <div class="color-hex">#06B6D4</div>
+                            <div class="color-usage">Acentos tech, progreso, datos</div>
+                        </div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-preview primary-4">Verde Crecimiento</div>
+                        <div class="color-info">
+                            <div class="color-name">Verde Educativo</div>
+                            <div class="color-hex">#10B981</div>
+                            <div class="color-usage">Éxito, progreso, logros</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin: 40px 0 20px 0; color: #1a1a2e; font-size: 1.4em;">Colores Secundarios - Apoyo y Variedad</h3>
+                <div class="color-palette">
+                    <div class="color-card">
+                        <div class="color-preview secondary-1">Ámbar Energía</div>
+                        <div class="color-info">
+                            <div class="color-name">Ámbar Dinámico</div>
+                            <div class="color-hex">#F59E0B</div>
+                            <div class="color-usage">Alertas positivas, gamificación</div>
+                        </div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-preview secondary-2">Rojo Atención</div>
+                        <div class="color-info">
+                            <div class="color-name">Rojo Acción</div>
+                            <div class="color-hex">#EF4444</div>
+                            <div class="color-usage">Errores, urgencia, llamadas</div>
+                        </div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-preview secondary-3">Rosa Creatividad</div>
+                        <div class="color-info">
+                            <div class="color-name">Rosa Innovación</div>
+                            <div class="color-hex">#EC4899</div>
+                            <div class="color-usage">Creatividad, arte, personalización</div>
+                        </div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-preview secondary-4">Gris Equilibrio</div>
+                        <div class="color-info">
+                            <div class="color-name">Gris Profesional</div>
+                            <div class="color-hex">#64748B</div>
+                            <div class="color-usage">Texto secundario, bordes sutiles</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin: 40px 0 20px 0; color: #1a1a2e; font-size: 1.4em;">Colores Neutros - Base y Legibilidad</h3>
+                <div class="color-palette">
+                    <div class="color-card">
+                        <div class="color-preview neutral-1">Blanco Puro</div>
+                        <div class="color-info">
+                            <div class="color-name">Blanco Base</div>
+                            <div class="color-hex">#F8FAFC</div>
+                            <div class="color-usage">Fondos principales, tarjetas</div>
+                        </div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-preview neutral-2">Gris Claro</div>
+                        <div class="color-info">
+                            <div class="color-name">Gris Sutil</div>
+                            <div class="color-hex">#E2E8F0</div>
+                            <div class="color-usage">Bordes, separadores</div>
+                        </div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-preview neutral-3">Gris Medio</div>
+                        <div class="color-info">
+                            <div class="color-name">Gris Texto</div>
+                            <div class="color-hex">#CBD5E1</div>
+                            <div class="color-usage">Texto secundario, placeholder</div>
+                        </div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-preview neutral-4">Azul Marino</div>
+                        <div class="color-info">
+                            <div class="color-name">Marino Principal</div>
+                            <div class="color-hex">#1A1A2E</div>
+                            <div class="color-usage">Texto principal, headers</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="icon">✨</span>
+                    Efectos Glassmorphism
+                </h2>
+                
+                <p style="margin-bottom: 25px; color: #64748b; font-size: 1.1em;">El glassmorphism es LA tendencia de UI 2025 para apps tech/IA. Creamos profundidad y modernidad sin sobrecargar la experiencia educativa.</p>
+                
+                <div class="glass-examples">
+                    <div class="glass-card">
+                        <h4>🎮 Módulo de Juego</h4>
+                        <p>Tarjetas de juego con efecto cristal que permiten ver el fondo dinámico mientras mantienen la legibilidad del contenido educativo.</p>
+                    </div>
+                    <div class="glass-card">
+                        <h4>📊 Panel de Progreso</h4>
+                        <p>Dashboards transparentes que muestran métricas sin interrumpir el flujo visual de la aplicación educativa.</p>
+                    </div>
+                    <div class="glass-card">
+                        <h4>🔔 Notificaciones</h4>
+                        <p>Alerts y notificaciones con cristal que aparecen elegantemente sobre el contenido sin bloquear la experiencia.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="icon">📝</span>
+                    Sistema Tipográfico
+                </h2>
+                
+                <div class="typography-demo">
+                    <div class="font-display">MindCraft AI</div>
+                    <div class="font-heading">Construyendo mentes brillantes</div>
+                    <div class="font-body">La plataforma educativa que combina aprendizaje tradicional con alfabetización en IA, diseñada específicamente para niños de 8-12 años que necesitan prepararse para el futuro digital.</div>
+                    <div class="font-caption">Sistema de fonts: Inter Variable, SF Pro Display, sistema nativo</div>
+                </div>
+
+                <div style="background: white; padding: 30px; border-radius: 16px; border: 2px solid #e2e8f0; margin: 25px 0;">
+                    <h4 style="color: #1a1a2e; margin-bottom: 20px;">Jerarquía Tipográfica:</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin: 12px 0; color: #64748b;"><strong>Display (48px+):</strong> Títulos principales, hero sections</li>
+                        <li style="margin: 12px 0; color: #64748b;"><strong>Heading 1 (36px):</strong> Títulos de sección importantes</li>
+                        <li style="margin: 12px 0; color: #64748b;"><strong>Heading 2 (24px):</strong> Subtítulos, módulos</li>
+                        <li style="margin: 12px 0; color: #64748b;"><strong>Body Large (18px):</strong> Texto principal, descripciones</li>
+                        <li style="margin: 12px 0; color: #64748b;"><strong>Body (16px):</strong> Texto estándar, contenido</li>
+                        <li style="margin: 12px 0; color: #64748b;"><strong>Caption (14px):</strong> Metadata, labels, ayudas</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="icon">🧩</span>
+                    Componentes UI
+                </h2>
+                
+                <div class="component-showcase">
+                    <div class="component-card">
+                        <h4 style="margin-bottom: 15px; color: #1a1a2e;">Botones Primarios</h4>
+                        <button class="btn-primary">Comenzar Aventura</button>
+                        <p style="margin-top: 10px; font-size: 0.9em; color: #64748b;">Gradiente con shadow, hover elevación</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <h4 style="margin-bottom: 15px; color: #1a1a2e;">Botones Secundarios</h4>
+                        <button class="btn-secondary">Ver Demo</button>
+                        <p style="margin-top: 10px; font-size: 0.9em; color: #64748b;">Outline con transición suave</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <h4 style="margin-bottom: 15px; color: #1a1a2e;">Campos de Entrada</h4>
+                        <input class="input-field" placeholder="email@ejemplo.com" type="email">
+                        <p style="margin-top: 5px; font-size: 0.9em; color: #64748b;">Glassmorphism sutil, focus state</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <h4 style="margin-bottom: 15px; color: #1a1a2e;">Tarjetas de Módulo</h4>
+                        <div style="background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; padding: 20px; border-radius: 12px; text-align: center;">
+                            <div style="font-size: 2em; margin-bottom: 10px;">🧮</div>
+                            <div style="font-weight: 600;">Matemáticas IA</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="icon">🖥️</span>
+                    Layout de Landing Page
+                </h2>
+                
+                <div class="layout-preview">
+                    <div class="mockup-header">Hero Section - Gradiente + Glassmorphism</div>
+                    <div class="mockup-content">
+                        <div class="mockup-main">Contenido Principal - Módulos, Features, Demo</div>
+                        <div class="mockup-sidebar">Sidebar - Testimonios, Stats, CTA</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
+                        <div style="background: white; height: 80px; border-radius: 12px; border: 2px solid #e2e8f0; display: flex; align-items: center; justify-content: center; color: #64748b; font-size: 0.9em;">Footer Links</div>
+                        <div style="background: white; height: 80px; border-radius: 12px; border: 2px solid #e2e8f0; display: flex; align-items: center; justify-content: center; color: #64748b; font-size: 0.9em;">Social Proof</div>
+                        <div style="background: white; height: 80px; border-radius: 12px; border: 2px solid #e2e8f0; display: flex; align-items: center; justify-content: center; color: #64748b; font-size: 0.9em;">Newsletter</div>
+                    </div>
+                </div>
+
+                <div style="background: white; padding: 30px; border-radius: 16px; border: 2px solid #e2e8f0; margin: 25px 0;">
+                    <h4 style="color: #1a1a2e; margin-bottom: 20px;">Estructura Recomendada:</h4>
+                    <ol style="color: #64748b; padding-left: 20px;">
+                        <li style="margin: 8px 0;"><strong>Hero Section:</strong> Gradiente + glassmorphism, CTA prominente, demo visual</li>
+                        <li style="margin: 8px 0;"><strong>Social Proof:</strong> Testimonios early adopters, logos instituciones</li>
+                        <li style="margin: 8px 0;"><strong>Módulos:</strong> Grid de características con iconos animados</li>
+                        <li style="margin: 8px 0;"><strong>Demo/Video:</strong> Showcase interactivo de la plataforma</li>
+                        <li style="margin: 8px 0;"><strong>Pricing/Waitlist:</strong> CTA de registro con beneficios claros</li>
+                        <li style="margin: 8px 0;"><strong>FAQ:</strong> Dudas comunes de padres y educadores</li>
+                        <li style="margin: 8px 0;"><strong>Footer:</strong> Links, contacto, newsletter signup</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="icon">🎭</span>
+                    Personalidad de Marca
+                </h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin: 30px 0;">
+                    <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 25px; border-radius: 16px;">
+                        <h4 style="color: #92400e; margin-bottom: 15px;">🧠 Inteligente</h4>
+                        <p style="color: #78350f; font-size: 0.95em;">Tecnología de vanguardia que realmente funciona y genera resultados medibles en el aprendizaje.</p>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 25px; border-radius: 16px;">
+                        <h4 style="color: #1e40af; margin-bottom: 15px;">🤝 Confiable</h4>
+                        <p style="color: #1e3a8a; font-size: 0.95em;">Segura para niños, respaldada por educadores, con privacidad y transparencia total.</p>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); padding: 25px; border-radius: 16px;">
+                        <h4 style="color: #065f46; margin-bottom: 15px;">🎮 Divertida</h4>
+                        <p style="color: #064e3b; font-size: 0.95em;">Gamificación auténtica que mantiene a los niños comprometidos sin sacrificar el aprendizaje real.</p>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%); padding: 25px; border-radius: 16px;">
+                        <h4 style="color: #be185d; margin-bottom: 15px;">🚀 Innovadora</h4>
+                        <p style="color: #9d174d; font-size: 0.95em;">Pionera en educación con IA, siempre un paso adelante, preparando para el futuro.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="icon">📱</span>
+                    Consideraciones Mobile-First
+                </h2>
+                
+                <div class="highlight-box">
+                    <h4 style="color: #92400e; margin-bottom: 15px;">🎯 Prioridades Mobile 2025:</h4>
+                    <ul style="color: #78350f; padding-left: 20px;">
+                        <li style="margin: 8px 0;"><strong>Touch targets mínimo 44px</strong> - Accesibilidad táctil</li>
+                        <li style="margin: 8px 0;"><strong>Gradientes optimizados</strong> - Performance en dispositivos medio/bajo</li>
+                        <li style="margin: 8px 0;"><strong>Glassmorphism adaptativo</strong> - Menos blur en móviles más lentos</li>
+                        <li style="margin: 8px 0;"><strong>Tipografía escalable</strong> - Legibilidad en pantallas pequeñas</li>
+                        <li style="margin: 8px 0;"><strong>CTAs prominentes</strong> - Conversión optimizada para touch</li>
+                    </ul>
+                </div>
+            </section>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <button class="download-btn" onclick="window.print()">
+                    🎨 Descargar Guía Visual Completa
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
