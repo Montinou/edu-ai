@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600">
+  <defs>
+    <linearGradient id="mathGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4ade80;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#22c55e;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="600" fill="url(#mathGradient)"/>
+  <rect width="400" height="600" fill="url(#centerGlow)"/>
+  
+  <!-- Border -->
+  <rect x="10" y="10" width="380" height="580" fill="none" stroke="#ffffff" stroke-width="4" rx="20"/>
+  
+  <!-- Math symbols -->
+  <g fill="#ffffff" opacity="0.9">
+    <!-- Plus sign -->
+    <rect x="80" y="120" width="40" height="8" rx="4"/>
+    <rect x="96" y="104" width="8" height="40" rx="4"/>
+    
+    <!-- Equals sign -->
+    <rect x="280" y="116" width="40" height="6" rx="3"/>
+    <rect x="280" y="130" width="40" height="6" rx="3"/>
+    
+    <!-- Numbers -->
+    <text x="150" y="140" font-family="Arial, sans-serif" font-size="48" font-weight="bold" text-anchor="middle">2</text>
+    <text x="250" y="140" font-family="Arial, sans-serif" font-size="48" font-weight="bold" text-anchor="middle">3</text>
+    <text x="360" y="140" font-family="Arial, sans-serif" font-size="48" font-weight="bold" text-anchor="middle">5</text>
+    
+    <!-- Multiplication -->
+    <g transform="translate(100, 220)">
+      <rect x="16" y="20" width="8" height="8" rx="4" transform="rotate(45)"/>
+      <rect x="16" y="20" width="8" height="8" rx="4" transform="rotate(-45)"/>
+    </g>
+    
+    <!-- Division -->
+    <g transform="translate(280, 220)">
+      <circle cx="20" cy="12" r="4"/>
+      <rect x="8" y="18" width="24" height="4" rx="2"/>
+      <circle cx="20" cy="30" r="4"/>
+    </g>
+    
+    <!-- Square root -->
+    <g transform="translate(50, 300)" stroke="#ffffff" stroke-width="3" fill="none">
+      <path d="M 0 20 L 10 30 L 20 10 L 60 10"/>
+    </g>
+    
+    <!-- Pi symbol -->
+    <g transform="translate(300, 300)">
+      <rect x="0" y="10" width="40" height="4" rx="2"/>
+      <rect x="10" y="10" width="4" height="30" rx="2"/>
+      <rect x="26" y="10" width="4" height="30" rx="2"/>
+    </g>
+    
+    <!-- Central math icon -->
+    <g transform="translate(200, 350)">
+      <circle cx="0" cy="0" r="60" fill="none" stroke="#ffffff" stroke-width="4" opacity="0.7"/>
+      <text x="0" y="15" font-family="Arial, sans-serif" font-size="72" font-weight="bold" text-anchor="middle">∑</text>
+    </g>
+  </g>
+  
+  <!-- Footer text -->
+  <text x="200" y="520" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#ffffff" opacity="0.9">MATEMÁTICAS</text>
+  <text x="200" y="550" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#ffffff" opacity="0.7">Carta de Math</text>
+</svg> 

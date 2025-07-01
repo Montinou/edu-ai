@@ -1,0 +1,35 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo con gradiente verde -->
+  <defs>
+    <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4ade80;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#22c55e;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Fondo -->
+  <rect width="400" height="300" fill="url(#greenGradient)"/>
+  
+  <!-- Elementos matemáticos -->
+  <circle cx="100" cy="80" r="30" fill="#ffffff" opacity="0.8"/>
+  <text x="100" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#22c55e">2</text>
+  
+  <text x="150" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#ffffff">+</text>
+  
+  <circle cx="200" cy="80" r="30" fill="#ffffff" opacity="0.8"/>
+  <text x="200" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#22c55e">3</text>
+  
+  <text x="250" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#ffffff">=</text>
+  
+  <circle cx="300" cy="80" r="30" fill="#ffffff" opacity="0.8"/>
+  <text x="300" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#22c55e">5</text>
+  
+  <!-- Decoración -->
+  <circle cx="80" cy="200" r="15" fill="#ffffff" opacity="0.6"/>
+  <circle cx="320" cy="220" r="12" fill="#ffffff" opacity="0.6"/>
+  <circle cx="150" cy="180" r="8" fill="#ffffff" opacity="0.4"/>
+  <circle cx="250" cy="200" r="10" fill="#ffffff" opacity="0.5"/>
+  
+  <!-- Título -->
+  <text x="200" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff">Suma Básica</text>
+</svg> 

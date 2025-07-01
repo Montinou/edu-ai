@@ -1,0 +1,13 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /profile/private/
+Disallow: /game/session/
+
+# Host
+Host: https://edu-ia.vercel.app
+
+# Sitemaps
+Sitemap: https://edu-ia.vercel.app/sitemap.xml

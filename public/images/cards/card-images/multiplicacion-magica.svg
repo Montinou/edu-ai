@@ -1,0 +1,50 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo con gradiente púrpura mágico -->
+  <defs>
+    <linearGradient id="magicGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#a78bfa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="sparkle" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Fondo -->
+  <rect width="400" height="300" fill="url(#magicGradient)"/>
+  
+  <!-- Elementos mágicos de multiplicación -->
+  <g transform="translate(200, 100)">
+    <!-- Círculo mágico central -->
+    <circle cx="0" cy="0" r="60" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.8"/>
+    <circle cx="0" cy="0" r="45" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.6"/>
+    
+    <!-- Números en los puntos cardinales -->
+    <circle cx="-30" cy="-30" r="20" fill="#ffffff" opacity="0.9"/>
+    <text x="-30" y="-25" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#8b5cf6">4</text>
+    
+    <circle cx="30" cy="-30" r="20" fill="#ffffff" opacity="0.9"/>
+    <text x="30" y="-25" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#8b5cf6">×</text>
+    
+    <circle cx="30" cy="30" r="20" fill="#ffffff" opacity="0.9"/>
+    <text x="30" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#8b5cf6">6</text>
+    
+    <circle cx="-30" cy="30" r="20" fill="#ffffff" opacity="0.9"/>
+    <text x="-30" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#8b5cf6">=</text>
+    
+    <!-- Resultado en el centro -->
+    <circle cx="0" cy="0" r="25" fill="#ffffff" opacity="0.95"/>
+    <text x="0" y="8" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#8b5cf6">24</text>
+  </g>
+  
+  <!-- Estrellas mágicas -->
+  <polygon points="80,50 85,60 95,60 87,68 90,78 80,73 70,78 73,68 65,60 75,60" fill="url(#sparkle)" opacity="0.8"/>
+  <polygon points="320,80 323,86 330,86 325,90 327,97 320,94 313,97 315,90 310,86 317,86" fill="url(#sparkle)" opacity="0.6"/>
+  <polygon points="100,220 103,226 110,226 105,230 107,237 100,234 93,237 95,230 90,226 97,226" fill="url(#sparkle)" opacity="0.7"/>
+  <polygon points="300,200 305,210 315,210 307,218 310,228 300,223 290,228 293,218 285,210 295,210" fill="url(#sparkle)" opacity="0.9"/>
+  
+  <!-- Título -->
+  <text x="200" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff">Multiplicación Mágica</text>
+</svg> 

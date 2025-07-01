@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600">
+  <defs>
+    <linearGradient id="logicGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="600" fill="url(#logicGradient)"/>
+  <rect width="400" height="600" fill="url(#centerGlow)"/>
+  
+  <!-- Border -->
+  <rect x="10" y="10" width="380" height="580" fill="none" stroke="#ffffff" stroke-width="4" rx="20"/>
+  
+  <!-- Logic symbols -->
+  <g fill="#ffffff" opacity="0.9">
+    <!-- Logic gates -->
+    <!-- AND gate -->
+    <g transform="translate(80, 120)">
+      <path d="M 0 0 L 0 40 L 20 40 Q 40 40 40 20 Q 40 0 20 0 Z" stroke="#ffffff" stroke-width="2"/>
+      <circle cx="5" cy="10" r="2"/>
+      <circle cx="5" cy="30" r="2"/>
+      <circle cx="45" cy="20" r="2"/>
+    </g>
+    
+    <!-- OR gate -->
+    <g transform="translate(280, 120)">
+      <path d="M 0 0 Q 20 0 40 20 Q 20 40 0 40 Q 10 20 0 0" stroke="#ffffff" stroke-width="2" fill="none"/>
+      <circle cx="5" cy="12" r="2"/>
+      <circle cx="5" cy="28" r="2"/>
+      <circle cx="45" cy="20" r="2"/>
+    </g>
+    
+    <!-- Boolean values -->
+    <text x="100" y="220" font-family="Arial, sans-serif" font-size="36" font-weight="bold" text-anchor="middle">T</text>
+    <text x="150" y="220" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle">∧</text>
+    <text x="200" y="220" font-family="Arial, sans-serif" font-size="36" font-weight="bold" text-anchor="middle">F</text>
+    <text x="250" y="220" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle">=</text>
+    <text x="300" y="220" font-family="Arial, sans-serif" font-size="36" font-weight="bold" text-anchor="middle">F</text>
+    
+    <!-- Logic symbols -->
+    <!-- NOT gate -->
+    <g transform="translate(50, 280)">
+      <polygon points="0,10 20,0 20,20" stroke="#ffffff" stroke-width="2" fill="none"/>
+      <circle cx="23" cy="10" r="3" stroke="#ffffff" stroke-width="2" fill="none"/>
+    </g>
+    
+    <!-- XOR symbol -->
+    <g transform="translate(320, 280)">
+      <text x="0" y="20" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle">⊕</text>
+    </g>
+    
+    <!-- Central brain/logic icon -->
+    <g transform="translate(200, 350)">
+      <circle cx="0" cy="0" r="50" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.7"/>
+      <!-- Brain pattern -->
+      <path d="M -30 -20 Q -20 -30 0 -20 Q 20 -30 30 -20 Q 25 0 15 10 Q 0 5 -15 10 Q -25 0 -30 -20" 
+            stroke="#ffffff" stroke-width="2" fill="none" opacity="0.8"/>
+      <path d="M -15 -10 Q 0 -15 15 -10" stroke="#ffffff" stroke-width="2" fill="none" opacity="0.6"/>
+      <path d="M -10 5 Q 0 0 10 5" stroke="#ffffff" stroke-width="2" fill="none" opacity="0.6"/>
+    </g>
+    
+    <!-- Circuit pattern -->
+    <g transform="translate(150, 450)" stroke="#ffffff" stroke-width="2" fill="none" opacity="0.6">
+      <line x1="0" y1="0" x2="20" y2="0"/>
+      <rect x="20" y="-5" width="10" height="10" rx="2"/>
+      <line x1="30" y1="0" x2="50" y2="0"/>
+      <line x1="50" y1="0" x2="50" y2="20"/>
+      <line x1="50" y1="20" x2="70" y2="20"/>
+      <circle cx="75" cy="20" r="5"/>
+      <line x1="80" y1="20" x2="100" y2="20"/>
+    </g>
+  </g>
+  
+  <!-- Footer text -->
+  <text x="200" y="520" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#ffffff" opacity="0.9">LÓGICA</text>
+  <text x="200" y="550" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#ffffff" opacity="0.7">Carta de Logic</text>
+</svg> 

@@ -1,0 +1,58 @@
+{
+  "existing": [
+    {
+      "table": "users",
+      "count": 0
+    },
+    {
+      "table": "cards",
+      "count": 7
+    },
+    {
+      "table": "user_cards",
+      "count": 0
+    },
+    {
+      "table": "player_progress",
+      "count": 0
+    },
+    {
+      "table": "game_sessions",
+      "count": 0
+    },
+    {
+      "table": "problem_results",
+      "count": 0
+    },
+    {
+      "table": "achievements",
+      "count": 8
+    },
+    {
+      "table": "user_achievements",
+      "count": 0
+    },
+    {
+      "table": "ai_generated_content",
+      "count": 2
+    },
+    {
+      "table": "cards_problem_types",
+      "count": 0
+    },
+    {
+      "table": "player_learning_profiles",
+      "count": 0
+    },
+    {
+      "table": "problem_history",
+      "count": 0
+    },
+    {
+      "table": "battle_sessions",
+      "count": 0
+    }
+  ],
+  "missing": [],
+  "errors": []
+}
